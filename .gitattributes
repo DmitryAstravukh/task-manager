@@ -1,0 +1,6 @@
+# По дефолту Git сам выбирает
+* text=auto
+
+# для husky-хуков принудительно LF чтобы не было ошибки '/usr/bin/env: sh\r: No such file or directory' из-за лишнего \r в конце строки
+.husky/* text eol=lf
+*.sh text eol=lf
