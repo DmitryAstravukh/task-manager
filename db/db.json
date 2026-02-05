@@ -1,0 +1,532 @@
+{
+  "tags": [
+    { "id": "tag-ui", "name": "UI" },
+    { "id": "tag-api", "name": "API" },
+    { "id": "tag-bug", "name": "Bug" },
+    { "id": "tag-feature", "name": "Feature" },
+    { "id": "tag-docs", "name": "Docs" },
+    { "id": "tag-refactor", "name": "Refactor" },
+    { "id": "tag-tests", "name": "Tests" },
+    { "id": "tag-performance", "name": "Performance" },
+    { "id": "tag-design", "name": "Design" },
+    { "id": "tag-devops", "name": "DevOps" }
+  ],
+  "tasks": [
+    {
+      "id": "task-001",
+      "title": "Сверстать карточку задачи",
+      "description": "Вывести title, description, status, priority, deadline, tags.",
+      "status": "inProgress",
+      "priority": "high",
+      "deadline": "2026-02-05T00:00:00.000Z",
+      "tags": ["tag-ui", "tag-feature"],
+      "createdAt": "2026-01-10T09:00:00.000Z",
+      "updatedAt": "2026-02-01T12:00:00.000Z"
+    },
+    {
+      "id": "task-002",
+      "title": "",
+      "status": "todo",
+      "priority": "medium",
+      "deadline": "2026-01-20T00:00:00.000Z",
+      "tags": ["tag-ui"],
+      "createdAt": "2026-01-11T10:30:00.000Z",
+      "updatedAt": "2026-01-11T10:30:00.000Z"
+    },
+    {
+      "id": "task-003",
+      "title": "Сделать фильтр по статусу",
+      "description": "Фильтрация: todo/inProgress/done.",
+      "status": "todo",
+      "priority": "medium",
+      "deadline": "2026-02-10T00:00:00.000Z",
+      "tags": ["tag-feature"],
+      "createdAt": "2026-01-12T08:10:00.000Z",
+      "updatedAt": "2026-01-12T08:10:00.000Z"
+    },
+    {
+      "id": "task-004",
+      "title": "Сделать фильтр по приоритету",
+      "status": "todo",
+      "priority": "low",
+      "deadline": "2026-02-12T00:00:00.000Z",
+      "tags": ["tag-feature"],
+      "createdAt": "2026-01-12T08:40:00.000Z",
+      "updatedAt": "2026-01-12T08:40:00.000Z"
+    },
+    {
+      "id": "task-005",
+      "title": "Реализовать поиск по названию",
+      "description": "Поиск по title (без debounce).",
+      "status": "inProgress",
+      "priority": "high",
+      "deadline": "2026-02-08T00:00:00.000Z",
+      "tags": ["tag-feature", "tag-performance"],
+      "createdAt": "2026-01-13T11:15:00.000Z",
+      "updatedAt": "2026-01-30T14:00:00.000Z"
+    },
+    {
+      "id": "task-006",
+      "title": "Добавить сортировку по createdAt",
+      "status": "done",
+      "priority": "low",
+      "deadline": "2026-01-18T00:00:00.000Z",
+      "tags": ["tag-feature"],
+      "createdAt": "2026-01-14T09:05:00.000Z",
+      "updatedAt": "2026-01-16T16:20:00.000Z"
+    },
+    {
+      "id": "task-007",
+      "title": "Добавить сортировку по deadline",
+      "status": "inProgress",
+      "priority": "medium",
+      "deadline": "2026-02-15T00:00:00.000Z",
+      "tags": ["tag-feature"],
+      "createdAt": "2026-01-14T09:20:00.000Z",
+      "updatedAt": "2026-02-02T09:10:00.000Z"
+    },
+    {
+      "id": "task-008",
+      "title": "Сделать пагинацию списка задач",
+      "description": "Обычная пагинация: page/limit.",
+      "status": "todo",
+      "priority": "high",
+      "deadline": "2026-02-20T00:00:00.000Z",
+      "tags": ["tag-feature", "tag-performance"],
+      "createdAt": "2026-01-15T07:45:00.000Z",
+      "updatedAt": "2026-01-15T07:45:00.000Z"
+    },
+    {
+      "id": "task-009",
+      "title": "Настроить RTK Query baseApi",
+      "status": "done",
+      "priority": "high",
+      "deadline": "2026-01-25T00:00:00.000Z",
+      "tags": ["tag-api", "tag-refactor"],
+      "createdAt": "2026-01-15T12:00:00.000Z",
+      "updatedAt": "2026-01-20T18:30:00.000Z"
+    },
+    {
+      "id": "task-010",
+      "title": "CRUD: получить список задач",
+      "status": "done",
+      "priority": "high",
+      "deadline": "2026-01-28T00:00:00.000Z",
+      "tags": ["tag-api", "tag-feature"],
+      "createdAt": "2026-01-16T09:10:00.000Z",
+      "updatedAt": "2026-01-22T10:00:00.000Z"
+    },
+
+    {
+      "id": "task-011",
+      "title": "CRUD: создать задачу",
+      "description": "POST /tasks + автозаполнение createdAt/updatedAt.",
+      "status": "inProgress",
+      "priority": "high",
+      "deadline": "2026-02-07T00:00:00.000Z",
+      "tags": ["tag-api", "tag-feature"],
+      "createdAt": "2026-01-16T09:40:00.000Z",
+      "updatedAt": "2026-02-01T09:15:00.000Z"
+    },
+    {
+      "id": "task-012",
+      "title": "CRUD: обновить задачу",
+      "status": "todo",
+      "priority": "medium",
+      "deadline": "2026-02-18T00:00:00.000Z",
+      "tags": ["tag-api", "tag-feature"],
+      "createdAt": "2026-01-17T13:25:00.000Z",
+      "updatedAt": "2026-01-17T13:25:00.000Z"
+    },
+    {
+      "id": "task-013",
+      "title": "CRUD: удалить задачу",
+      "description": "DELETE /tasks/:id + confirm modal.",
+      "status": "todo",
+      "priority": "medium",
+      "deadline": "2026-02-16T00:00:00.000Z",
+      "tags": ["tag-feature", "tag-ui"],
+      "createdAt": "2026-01-18T08:00:00.000Z",
+      "updatedAt": "2026-01-18T08:00:00.000Z"
+    },
+    {
+      "id": "task-014",
+      "title": "PATCH: обновление статуса задачи",
+      "description": "PATCH /tasks/:id только поле status.",
+      "status": "inProgress",
+      "priority": "high",
+      "deadline": "2026-02-09T00:00:00.000Z",
+      "tags": ["tag-api", "tag-feature"],
+      "createdAt": "2026-01-18T11:10:00.000Z",
+      "updatedAt": "2026-02-02T11:30:00.000Z"
+    },
+    {
+      "id": "task-015",
+      "title": "Страница задачи: /task/:id",
+      "status": "todo",
+      "priority": "high",
+      "deadline": "2026-02-22T00:00:00.000Z",
+      "tags": ["tag-ui", "tag-feature"],
+      "createdAt": "2026-01-19T09:35:00.000Z",
+      "updatedAt": "2026-01-19T09:35:00.000Z"
+    },
+    {
+      "id": "task-016",
+      "title": "Добавить кнопку редактирования задачи",
+      "status": "todo",
+      "priority": "medium",
+      "deadline": "2026-02-25T00:00:00.000Z",
+      "tags": ["tag-ui", "tag-feature"],
+      "createdAt": "2026-01-19T10:05:00.000Z",
+      "updatedAt": "2026-01-19T10:05:00.000Z"
+    },
+    {
+      "id": "task-017",
+      "title": "Добавить подтверждение удаления (Dialog)",
+      "status": "inProgress",
+      "priority": "medium",
+      "deadline": "2026-02-06T00:00:00.000Z",
+      "tags": ["tag-ui"],
+      "createdAt": "2026-01-20T15:00:00.000Z",
+      "updatedAt": "2026-02-01T10:45:00.000Z"
+    },
+    {
+      "id": "task-018",
+      "title": "Сверстать страницу списка задач",
+      "status": "done",
+      "priority": "medium",
+      "deadline": "2026-01-30T00:00:00.000Z",
+      "tags": ["tag-ui", "tag-design"],
+      "createdAt": "2026-01-20T15:30:00.000Z",
+      "updatedAt": "2026-01-27T17:10:00.000Z"
+    },
+    {
+      "id": "task-019",
+      "title": "Сверстать форму создания/редактирования задачи",
+      "description": "React Hook Form + MUI.",
+      "status": "todo",
+      "priority": "high",
+      "deadline": "2026-02-26T00:00:00.000Z",
+      "tags": ["tag-ui", "tag-feature"],
+      "createdAt": "2026-01-21T08:15:00.000Z",
+      "updatedAt": "2026-01-21T08:15:00.000Z"
+    },
+    {
+      "id": "task-020",
+      "title": "Валидация формы через zod",
+      "status": "inProgress",
+      "priority": "high",
+      "deadline": "2026-02-11T00:00:00.000Z",
+      "tags": ["tag-feature", "tag-refactor"],
+      "createdAt": "2026-01-21T09:00:00.000Z",
+      "updatedAt": "2026-02-02T08:00:00.000Z"
+    },
+
+    {
+      "id": "task-021",
+      "title": "Автозаполнение createdAt/updatedAt",
+      "status": "done",
+      "priority": "low",
+      "deadline": "2026-01-22T00:00:00.000Z",
+      "tags": ["tag-refactor"],
+      "createdAt": "2026-01-22T07:20:00.000Z",
+      "updatedAt": "2026-01-22T12:00:00.000Z"
+    },
+    {
+      "id": "task-022",
+      "title": "Сделать автокомплит тегов (multi-select)",
+      "description": "Выбор минимум 1 тег + поиск по списку.",
+      "status": "todo",
+      "priority": "high",
+      "deadline": "2026-03-01T00:00:00.000Z",
+      "tags": ["tag-ui", "tag-feature"],
+      "createdAt": "2026-01-22T10:10:00.000Z",
+      "updatedAt": "2026-01-22T10:10:00.000Z"
+    },
+    {
+      "id": "task-023",
+      "title": "Реализовать фильтрацию по тегу (клик по тегу)",
+      "status": "todo",
+      "priority": "medium",
+      "deadline": "2026-03-03T00:00:00.000Z",
+      "tags": ["tag-feature", "tag-ui"],
+      "createdAt": "2026-01-23T08:55:00.000Z",
+      "updatedAt": "2026-01-23T08:55:00.000Z"
+    },
+    {
+      "id": "task-024",
+      "title": "Сделать endpoints для тегов (GET/POST)",
+      "status": "done",
+      "priority": "medium",
+      "deadline": "2026-01-27T00:00:00.000Z",
+      "tags": ["tag-api"],
+      "createdAt": "2026-01-23T09:10:00.000Z",
+      "updatedAt": "2026-01-24T18:00:00.000Z"
+    },
+    {
+      "id": "task-025",
+      "title": "Добавить возможность создания тега",
+      "status": "inProgress",
+      "priority": "medium",
+      "deadline": "2026-02-13T00:00:00.000Z",
+      "tags": ["tag-feature", "tag-ui"],
+      "createdAt": "2026-01-24T12:30:00.000Z",
+      "updatedAt": "2026-02-02T13:00:00.000Z"
+    },
+    {
+      "id": "task-026",
+      "title": "Обработать состояние загрузки (Loader/Skeleton)",
+      "status": "todo",
+      "priority": "low",
+      "deadline": "2026-03-05T00:00:00.000Z",
+      "tags": ["tag-ui"],
+      "createdAt": "2026-01-24T14:10:00.000Z",
+      "updatedAt": "2026-01-24T14:10:00.000Z"
+    },
+    {
+      "id": "task-027",
+      "title": "Обработать ошибки API (Alert + retry)",
+      "status": "todo",
+      "priority": "medium",
+      "deadline": "2026-03-06T00:00:00.000Z",
+      "tags": ["tag-api", "tag-ui"],
+      "createdAt": "2026-01-25T09:05:00.000Z",
+      "updatedAt": "2026-01-25T09:05:00.000Z"
+    },
+    {
+      "id": "task-028",
+      "title": "Добавить пустое состояние (нет задач)",
+      "status": "done",
+      "priority": "low",
+      "deadline": "2026-01-26T00:00:00.000Z",
+      "tags": ["tag-ui"],
+      "createdAt": "2026-01-25T10:45:00.000Z",
+      "updatedAt": "2026-01-26T16:00:00.000Z"
+    },
+    {
+      "id": "task-029",
+      "title": "Починить отображение длинного описания",
+      "description": "Ограничить по высоте + раскрытие по клику.",
+      "status": "todo",
+      "priority": "low",
+      "deadline": "2026-02-28T00:00:00.000Z",
+      "tags": ["tag-bug", "tag-ui"],
+      "createdAt": "2026-01-26T08:00:00.000Z",
+      "updatedAt": "2026-01-26T08:00:00.000Z"
+    },
+    {
+      "id": "task-030",
+      "title": "Рефактор: вынести маппинг статусов в константы",
+      "status": "done",
+      "priority": "low",
+      "deadline": "2026-01-29T00:00:00.000Z",
+      "tags": ["tag-refactor"],
+      "createdAt": "2026-01-26T09:20:00.000Z",
+      "updatedAt": "2026-01-28T11:00:00.000Z"
+    },
+
+    {
+      "id": "task-031",
+      "title": "Добавить unit-тесты для утилит дат",
+      "status": "todo",
+      "priority": "medium",
+      "deadline": "2026-03-10T00:00:00.000Z",
+      "tags": ["tag-tests"],
+      "createdAt": "2026-01-27T07:30:00.000Z",
+      "updatedAt": "2026-01-27T07:30:00.000Z"
+    },
+    {
+      "id": "task-032",
+      "title": "Проверить a11y на формах",
+      "status": "todo",
+      "priority": "medium",
+      "deadline": "2026-03-12T00:00:00.000Z",
+      "tags": ["tag-ui", "tag-design"],
+      "createdAt": "2026-01-27T09:40:00.000Z",
+      "updatedAt": "2026-01-27T09:40:00.000Z"
+    },
+    {
+      "id": "task-033",
+      "title": "Оптимизировать ререндеры списка задач",
+      "description": "Мемоизация карточек + ключи.",
+      "status": "inProgress",
+      "priority": "medium",
+      "deadline": "2026-02-14T00:00:00.000Z",
+      "tags": ["tag-performance", "tag-refactor"],
+      "createdAt": "2026-01-28T08:10:00.000Z",
+      "updatedAt": "2026-02-02T16:30:00.000Z"
+    },
+    {
+      "id": "task-034",
+      "title": "Добавить адаптивность для мобильных",
+      "status": "todo",
+      "priority": "medium",
+      "deadline": "2026-03-08T00:00:00.000Z",
+      "tags": ["tag-ui", "tag-design"],
+      "createdAt": "2026-01-28T10:00:00.000Z",
+      "updatedAt": "2026-01-28T10:00:00.000Z"
+    },
+    {
+      "id": "task-035",
+      "title": "Добавить страницу 404",
+      "status": "done",
+      "priority": "low",
+      "deadline": "2026-01-31T00:00:00.000Z",
+      "tags": ["tag-ui"],
+      "createdAt": "2026-01-28T12:30:00.000Z",
+      "updatedAt": "2026-01-30T10:00:00.000Z"
+    },
+    {
+      "id": "task-036",
+      "title": "Роут: /task/new",
+      "status": "inProgress",
+      "priority": "high",
+      "deadline": "2026-02-04T00:00:00.000Z",
+      "tags": ["tag-feature"],
+      "createdAt": "2026-01-29T09:00:00.000Z",
+      "updatedAt": "2026-02-02T10:20:00.000Z"
+    },
+    {
+      "id": "task-037",
+      "title": "Роут: /task/:id/edit",
+      "status": "todo",
+      "priority": "high",
+      "deadline": "2026-02-17T00:00:00.000Z",
+      "tags": ["tag-feature"],
+      "createdAt": "2026-01-29T09:20:00.000Z",
+      "updatedAt": "2026-01-29T09:20:00.000Z"
+    },
+    {
+      "id": "task-038",
+      "title": "Исправить баг с сохранением тегов",
+      "description": "После редактирования теряются выбранные теги.",
+      "status": "todo",
+      "priority": "high",
+      "deadline": "2026-02-03T00:00:00.000Z",
+      "tags": ["tag-bug", "tag-api"],
+      "createdAt": "2026-01-30T08:45:00.000Z",
+      "updatedAt": "2026-01-30T08:45:00.000Z"
+    },
+    {
+      "id": "task-039",
+      "title": "Документация: описать запуск проекта",
+      "status": "inProgress",
+      "priority": "low",
+      "deadline": "2026-02-21T00:00:00.000Z",
+      "tags": ["tag-docs"],
+      "createdAt": "2026-01-30T10:10:00.000Z",
+      "updatedAt": "2026-02-01T10:10:00.000Z"
+    },
+    {
+      "id": "task-040",
+      "title": "DevOps: добавить CI проверки lint/typecheck",
+      "status": "todo",
+      "priority": "medium",
+      "deadline": "2026-03-15T00:00:00.000Z",
+      "tags": ["tag-devops"],
+      "createdAt": "2026-01-31T09:30:00.000Z",
+      "updatedAt": "2026-01-31T09:30:00.000Z"
+    },
+
+    {
+      "id": "task-041",
+      "title": "Сделать корректное отображение даты дедлайна",
+      "status": "done",
+      "priority": "low",
+      "deadline": "2026-01-24T00:00:00.000Z",
+      "tags": ["tag-ui"],
+      "createdAt": "2026-01-31T12:00:00.000Z",
+      "updatedAt": "2026-02-01T08:00:00.000Z"
+    },
+    {
+      "id": "task-042",
+      "title": "Добавить быстрый dropdown статуса в карточке",
+      "status": "inProgress",
+      "priority": "high",
+      "deadline": "2026-02-06T00:00:00.000Z",
+      "tags": ["tag-ui", "tag-feature"],
+      "createdAt": "2026-02-01T09:00:00.000Z",
+      "updatedAt": "2026-02-02T09:00:00.000Z"
+    },
+    {
+      "id": "task-043",
+      "title": "Оптимизировать запрос списка задач (параметры)",
+      "status": "todo",
+      "priority": "medium",
+      "deadline": "2026-03-02T00:00:00.000Z",
+      "tags": ["tag-api", "tag-performance"],
+      "createdAt": "2026-02-01T10:20:00.000Z",
+      "updatedAt": "2026-02-01T10:20:00.000Z"
+    },
+    {
+      "id": "task-044",
+      "title": "Добавить ограничение 500 символов для description",
+      "status": "done",
+      "priority": "low",
+      "deadline": "2026-01-23T00:00:00.000Z",
+      "tags": ["tag-feature"],
+      "createdAt": "2026-02-01T11:00:00.000Z",
+      "updatedAt": "2026-02-01T11:10:00.000Z"
+    },
+    {
+      "id": "task-045",
+      "title": "Рефактор: вынести компоненты фильтров в отдельный feature",
+      "status": "todo",
+      "priority": "low",
+      "deadline": "2026-03-07T00:00:00.000Z",
+      "tags": ["tag-refactor"],
+      "createdAt": "2026-02-01T12:00:00.000Z",
+      "updatedAt": "2026-02-01T12:00:00.000Z"
+    },
+    {
+      "id": "task-046",
+      "title": "Починить сортировку по дедлайну при пустом значении",
+      "status": "todo",
+      "priority": "medium",
+      "deadline": "2026-02-02T00:00:00.000Z",
+      "tags": ["tag-bug"],
+      "createdAt": "2026-02-01T13:30:00.000Z",
+      "updatedAt": "2026-02-01T13:30:00.000Z"
+    },
+    {
+      "id": "task-047",
+      "title": "Добавить тест сценария создания задачи (browser)",
+      "status": "todo",
+      "priority": "high",
+      "deadline": "2026-03-09T00:00:00.000Z",
+      "tags": ["tag-tests", "tag-feature"],
+      "createdAt": "2026-02-01T14:10:00.000Z",
+      "updatedAt": "2026-02-01T14:10:00.000Z"
+    },
+    {
+      "id": "task-048",
+      "title": "Добавить тест сценария фильтрации по тегу (browser)",
+      "status": "todo",
+      "priority": "medium",
+      "deadline": "2026-03-11T00:00:00.000Z",
+      "tags": ["tag-tests"],
+      "createdAt": "2026-02-01T14:30:00.000Z",
+      "updatedAt": "2026-02-01T14:30:00.000Z"
+    },
+    {
+      "id": "task-049",
+      "title": "Документация: описать API эндпоинты",
+      "status": "todo",
+      "priority": "low",
+      "deadline": "2026-03-04T00:00:00.000Z",
+      "tags": ["tag-docs", "tag-api"],
+      "createdAt": "2026-02-01T15:10:00.000Z",
+      "updatedAt": "2026-02-01T15:10:00.000Z"
+    },
+    {
+      "id": "task-050",
+      "title": "Проверить корректность обновления updatedAt при PATCH",
+      "status": "inProgress",
+      "priority": "medium",
+      "deadline": "2026-02-19T00:00:00.000Z",
+      "tags": ["tag-tests", "tag-api"],
+      "createdAt": "2026-02-02T08:00:00.000Z",
+      "updatedAt": "2026-02-02T12:00:00.000Z"
+    }
+  ]
+}
