@@ -16,6 +16,7 @@ import { MUISelect } from "../mui-select/MUISelect";
 
 type TaskDataBaseProps = {
   task: Task;
+  isTrimDescription: boolean;
 };
 
 type WithTagFilter = TaskDataBaseProps & {
@@ -31,7 +32,7 @@ type WithoutTagFilter = TaskDataBaseProps & {
 type TaskDataProps = WithTagFilter | WithoutTagFilter;
 
 export const TaskData = (props: TaskDataProps) => {
-  const { task } = props;
+  const { task, isTrimDescription } = props;
   const overdue = isOverdue(task);
 
   const [updateStatus, { isError, isSuccess, reset, isLoading }] = usePatchTaskStatusMutation();
@@ -69,7 +70,20 @@ export const TaskData = (props: TaskDataProps) => {
           {task.title || "Название не задано"}
         </Typography>
 
-        <Typography variant="body2" sx={{ color: "text.secondary", marginTop: "12px" }}>
+        <Typography
+          variant="body2"
+          sx={{
+            color: "text.secondary",
+            marginTop: "12px",
+            ...(isTrimDescription && {
+              display: "-webkit-box",
+              WebkitLineClamp: 3,
+              WebkitBoxOrient: "vertical",
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+            }),
+          }}
+        >
           {task.description || "Описание не задано"}
         </Typography>
 

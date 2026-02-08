@@ -38,7 +38,7 @@ export const TaskCard = ({ task, tagId, setTagId }: TaskCardProps) => {
           to={buildRoute.taskDetail(task.id)}
           style={{ textDecoration: "none", color: "inherit" }}
         >
-          <TaskData task={task} tagId={tagId} setTagId={setTagId} tagIsFilter />
+          <TaskData task={task} tagId={tagId} setTagId={setTagId} tagIsFilter isTrimDescription />
         </Link>
       </CardActionArea>
     </Card>

@@ -1,17 +1,17 @@
-import { useDeleteTaskMutation, useGetTaskByIdQuery } from "@/entities/task/api/task-api";
-import { ErrorBoundary } from "@/shared/components/error-boundary/ErrorBoundary";
-import { TaskDataSkeleton } from "@/shared/components/task-data/ui/TaskDataSkeleton";
-import { Box, Button, Paper, Stack } from "@mui/material";
-import { Link, useNavigate, useParams } from "react-router-dom";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import EditIcon from "@mui/icons-material/Edit";
-import DeleteIcon from "@mui/icons-material/Delete";
-import { ErrorWithRetry } from "@/shared/components/error-with-retry/ErrorWithRetry";
-import { TaskData } from "@/shared/components/task-data/TaskData";
-import { useState } from "react";
 import { buildRoute, Routes } from "@/app/router/routes";
+import { useDeleteTaskMutation, useGetTaskByIdQuery } from "@/entities/task/api/task-api";
 import { DeleteConfirmationDialog } from "@/shared/components/delete-confirmation-dialog/DeleteConfirmationDialog";
+import { ErrorBoundary } from "@/shared/components/error-boundary/ErrorBoundary";
+import { ErrorWithRetry } from "@/shared/components/error-with-retry/ErrorWithRetry";
 import { MUINotification } from "@/shared/components/mui-notification/MUINotification";
+import { TaskCrudPageHeader } from "@/shared/components/task-crud-page-header/TaskCrudPageHeader";
+import { TaskData } from "@/shared/components/task-data/TaskData";
+import { TaskDataSkeleton } from "@/shared/components/task-data/ui/TaskDataSkeleton";
+import DeleteIcon from "@mui/icons-material/Delete";
+import EditIcon from "@mui/icons-material/Edit";
+import { Button, Stack } from "@mui/material";
+import { useState } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 export const TaskDetailPage = () => {
   const navigate = useNavigate();
@@ -35,32 +35,8 @@ export const TaskDetailPage = () => {
 
   return (
     <ErrorBoundary onReset={refetch}>
-      <Paper
-        sx={{
-          display: "flex",
-          justifyContent: "space-between",
-          width: "100%",
-          padding: "16px",
-          boxSizing: "border-box",
-          borderRadius: 3,
-          marginBottom: "24px",
-        }}
-      >
-        <Button
-          variant="text"
-          startIcon={<ArrowBackIcon />}
-          onClick={() => navigate(Routes.home)}
-          sx={{
-            borderRadius: 2,
-            textTransform: "none",
-            fontWeight: 500,
-          }}
-          disabled={buttonsDisabled}
-        >
-          Назад
-        </Button>
-
-        <Box sx={{ display: "flex" }}>
+      <TaskCrudPageHeader disabled={buttonsDisabled}>
+        <>
           {!!getTaskError && <ErrorWithRetry error={getTaskError} onRetry={refetch} />}
 
           {!getTaskError && (
@@ -89,13 +65,15 @@ export const TaskDetailPage = () => {
               </Button>
             </>
           )}
-        </Box>
-      </Paper>
+        </>
+      </TaskCrudPageHeader>
 
       <Stack direction="row" spacing={3}>
         {isGetTaskLoading && <TaskDataSkeleton />}
 
-        {!isGetTaskLoading && !getTaskError && task && <TaskData task={task} tagIsFilter={false} />}
+        {!isGetTaskLoading && !getTaskError && task && (
+          <TaskData task={task} tagIsFilter={false} isTrimDescription={false} />
+        )}
       </Stack>
 
       <DeleteConfirmationDialog

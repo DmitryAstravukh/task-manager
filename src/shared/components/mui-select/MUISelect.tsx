@@ -40,7 +40,7 @@ export const MUISelect = <V, WithDefault extends boolean>({
 
       <Select
         labelId={id}
-        value={value}
+        value={value ?? ""}
         onChange={(e) => {
           e.stopPropagation();
           setValue(e.target.value as V);
