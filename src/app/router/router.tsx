@@ -1,14 +1,15 @@
 import { lazy } from "react";
 import { createBrowserRouter } from "react-router-dom";
-import { Layout } from "../ui/Layout";
-import { TasksListPage } from "@/pages/tasks-list-page/TasksListPage";
+import { Layout } from "@/app/components/Layout";
+import { TasksListPage } from "@/pages/tasks-list-page/TasksListPage.tsx";
 import { ErrorPage } from "@/pages/error-page/ErrorPage";
+import { Routes } from "@/app/router/routes.ts";
 
 const TaskDetailPage = lazy(() => import("@/pages/task-detail-page/TaskDetailPage"));
 
 export const router = createBrowserRouter([
   {
-    path: "/",
+    path: Routes.home,
     element: <Layout />,
     errorElement: <ErrorPage />,
     children: [
@@ -17,11 +18,11 @@ export const router = createBrowserRouter([
         element: <TasksListPage />,
       },
       {
-        path: "task/:id",
+        path: Routes.taskDetail,
         element: <TaskDetailPage />,
       },
       {
-        path: "*",
+        path: Routes.error,
         element: <ErrorPage />,
       },
     ],

@@ -1,5 +1,5 @@
 import { baseApi } from "@/shared/api/baseApi.ts";
-import type { Tag } from "../model/types";
+import type { Tag } from "@/entities/tag/types/tag-types.ts";
 
 export const tagApi = baseApi.injectEndpoints({
   endpoints: (build) => ({

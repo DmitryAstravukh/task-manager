@@ -1,21 +1,20 @@
 import { baseApi } from "@/shared/api/baseApi.ts";
-import type { Task, TaskPriority, TaskStatus } from "../model/types";
-
-export type TasksSortField = "createdAt" | "deadline";
-export type SortOrder = "asc" | "desc";
+import type { Task, TaskPriority, TaskStatus } from "../types/task-types";
+import type { SortOrder, TasksSortField } from "@/shared/api/types";
+import { ITEMS_PER_PAGE } from "@/shared/constants/constants";
 
 export type GetTasksArgs = {
-  page?: number;
+  page: number;
   limit?: number;
 
-  status?: TaskStatus;
-  priority?: TaskPriority;
-  tagId?: string;
+  title: string;
 
-  title?: string;
+  status: TaskStatus | "";
+  priority: TaskPriority | "";
+  tagId: string;
 
-  sort?: TasksSortField;
-  order?: SortOrder;
+  sort: TasksSortField | "";
+  order: SortOrder | "";
 };
 
 export type Paginated<T> = {
@@ -29,7 +28,7 @@ function buildParams(args: GetTasksArgs) {
   const p = new URLSearchParams();
 
   const page = args.page ?? 1;
-  const limit = args.limit ?? 10;
+  const limit = args.limit ?? ITEMS_PER_PAGE;
   p.set("_page", String(page));
   p.set("_limit", String(limit));
 
@@ -41,8 +40,10 @@ function buildParams(args: GetTasksArgs) {
 
   if (args.title?.trim()) p.set("title_like", args.title.trim());
 
-  // Для массива tags json-server часто работает через *_like
   if (args.tagId) p.set("tags_like", args.tagId);
+
+  console.log("args -->", args);
+  console.log("p -->", p);
 
   return p;
 }
@@ -100,7 +101,6 @@ export const taskApi = baseApi.injectEndpoints({
       ],
     }),
 
-    // отдельный PATCH статуса (по требованию)
     patchTaskStatus: build.mutation<Task, { id: string; status: TaskStatus }>({
       query: ({ id, status }) => ({
         url: `/tasks/${id}`,

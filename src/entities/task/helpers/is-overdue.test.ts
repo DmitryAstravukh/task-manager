@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { isTaskOverdue } from "./isOverdue";
-import type { Task } from "../model/types";
+import { isOverdue } from "./is-overdue";
+import type { Task } from "../types/task-types";
 
 function task(partial: Partial<Task> = {}): Task {
   const now = new Date().toISOString();
@@ -10,7 +10,7 @@ function task(partial: Partial<Task> = {}): Task {
     status: "todo",
     priority: "low",
     deadline: now,
-    tags: ["tag-ui"],
+    tags: ["tag-components"],
     createdAt: now,
     updatedAt: now,
     ...partial,
@@ -19,14 +19,10 @@ function task(partial: Partial<Task> = {}): Task {
 
 describe("isTaskOverdue", () => {
   it("returns true when deadline passed and not done", () => {
-    expect(isTaskOverdue(task({ deadline: "2000-01-01T00:00:00.000Z", status: "todo" }))).toBe(
-      true,
-    );
+    expect(isOverdue(task({ deadline: "2000-01-01T00:00:00.000Z", status: "todo" }))).toBe(true);
   });
 
   it("returns false when task done", () => {
-    expect(isTaskOverdue(task({ deadline: "2000-01-01T00:00:00.000Z", status: "done" }))).toBe(
-      false,
-    );
+    expect(isOverdue(task({ deadline: "2000-01-01T00:00:00.000Z", status: "done" }))).toBe(false);
   });
 });
