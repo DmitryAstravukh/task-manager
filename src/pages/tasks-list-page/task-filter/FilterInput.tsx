@@ -13,8 +13,6 @@ export const FilterInput = ({ setFilterValue }: FilterInputProps) => {
 
   const debouncedSetValue = useMemo(() => debounce(setFilterValue, 300), [setFilterValue]);
 
-  console.log("text value", text);
-
   const setValue = (value: string) => {
     setText(value);
     debouncedSetValue(value);

@@ -42,9 +42,6 @@ function buildParams(args: GetTasksArgs) {
 
   if (args.tagId) p.set("tags_like", args.tagId);
 
-  console.log("args -->", args);
-  console.log("p -->", p);
-
   return p;
 }
 

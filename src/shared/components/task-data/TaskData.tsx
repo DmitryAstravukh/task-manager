@@ -14,14 +14,24 @@ import CardContent from "@mui/material/CardContent";
 import { MUINotification } from "../mui-notification/MUINotification";
 import { MUISelect } from "../mui-select/MUISelect";
 
-type TaskDataProps = {
+type TaskDataBaseProps = {
   task: Task;
-  tagId: string;
-  setTagId: (value: string) => void;
-  tagIsFilter: boolean;
 };
 
-export const TaskData = ({ task, tagId, setTagId, tagIsFilter }: TaskDataProps) => {
+type WithTagFilter = TaskDataBaseProps & {
+  tagIsFilter: true;
+  tagId: string;
+  setTagId: (value: string) => void;
+};
+
+type WithoutTagFilter = TaskDataBaseProps & {
+  tagIsFilter?: false;
+};
+
+type TaskDataProps = WithTagFilter | WithoutTagFilter;
+
+export const TaskData = (props: TaskDataProps) => {
+  const { task } = props;
   const overdue = isOverdue(task);
 
   const [updateStatus, { isError, isSuccess, reset, isLoading }] = usePatchTaskStatusMutation();
@@ -34,23 +44,16 @@ export const TaskData = ({ task, tagId, setTagId, tagIsFilter }: TaskDataProps) 
     e.stopPropagation();
     e.preventDefault();
 
-    if (tagIsFilter) {
-      if (tagId === tag) {
-        return setTagId("");
+    if (props.tagIsFilter) {
+      if (props.tagId === tag) {
+        return props.setTagId("");
       }
-      setTagId(tag);
+      props.setTagId(tag);
     }
   };
 
   return (
     <>
-      <MUINotification
-        open={isError || isSuccess}
-        onClose={reset}
-        message={isError ? "Не удалось изменить статус" : "Статус успешно изменен"}
-        severity={isError ? "error" : "success"}
-      />
-
       <CardContent>
         <Typography
           variant="h6"
@@ -96,19 +99,27 @@ export const TaskData = ({ task, tagId, setTagId, tagIsFilter }: TaskDataProps) 
         </Stack>
 
         <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
-          {task.tags.map((tag) => (
-            <Chip
-              key={tag}
-              label={tag}
-              size="small"
-              variant="filled"
-              color={tagId === tag ? "primary" : "default"}
-              onClick={handleTagClick(tag)}
-              sx={{ cursor: tagIsFilter ? "pointer" : undefined }}
-            />
-          ))}
+          {"tagId" in props &&
+            task.tags.map((tag) => (
+              <Chip
+                key={tag}
+                label={tag}
+                size="small"
+                variant="filled"
+                color={props.tagId === tag ? "primary" : "default"}
+                onClick={handleTagClick(tag)}
+                sx={{ cursor: props.tagIsFilter ? "pointer" : undefined }}
+              />
+            ))}
         </Box>
       </CardContent>
+
+      <MUINotification
+        open={isError || isSuccess}
+        onClose={reset}
+        message={isError ? "Не удалось изменить статус" : "Статус успешно изменен"}
+        severity={isError ? "error" : "success"}
+      />
     </>
   );
 };

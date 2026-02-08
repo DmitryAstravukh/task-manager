@@ -20,7 +20,7 @@ export const MUINotification = ({
       open={open}
       autoHideDuration={autoHideDuration}
       onClose={onClose}
-      anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+      anchorOrigin={{ vertical: "top", horizontal: "right" }}
     >
       <Alert onClose={onClose} severity={severity} sx={{ width: "100%" }} variant="filled">
         {message}

@@ -5,8 +5,16 @@ import { Outlet } from "react-router-dom";
 
 export const Layout = () => {
   return (
-    <Box sx={{ width: "1600px", minHeight: "100dvh", padding: "24px", boxSizing: "border-box" }}>
+    <Box
+      sx={{
+        width: "1600px",
+        minHeight: "100dvh",
+        padding: "24px",
+        boxSizing: "border-box",
+      }}
+    >
       <Loader />
+
       <Suspense fallback={<Loader forcedOn />}>
         <Outlet />
       </Suspense>

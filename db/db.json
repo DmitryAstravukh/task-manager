@@ -64,17 +64,6 @@
       "updatedAt": "2026-01-11T10:30:00.000Z"
     },
     {
-      "id": "task-003",
-      "title": "Сделать фильтр по статусу",
-      "description": "Фильтрация: todo/inProgress/done.",
-      "status": "inProgress",
-      "priority": "medium",
-      "deadline": "2026-02-10T00:00:00.000Z",
-      "tags": ["feature"],
-      "createdAt": "2026-01-12T08:10:00.000Z",
-      "updatedAt": "2026-02-08T14:00:45.202Z"
-    },
-    {
       "id": "task-004",
       "title": "Сделать фильтр по приоритету",
       "status": "todo",
