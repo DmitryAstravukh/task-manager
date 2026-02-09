@@ -1,5 +1,11 @@
 import type { Preview } from "@storybook/react-vite";
 
+//это нужно для корректного запуска тестов из браузера из‑за того, что TypeScript в файле .storybook/preview.ts компилируется как Node‑окружение,
+// а не как браузерное. В Node нет глобального объекта window
+declare const window: unknown;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+(window as any).global = window;
+
 const preview: Preview = {
   parameters: {
     controls: {
