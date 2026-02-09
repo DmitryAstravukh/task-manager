@@ -1,5 +1,5 @@
 import type { TaskPriority, TaskStatus } from "@/entities/task/types/task-types";
-import type { SortOrder, TasksSortField } from "@/shared/api/types";
+import type { SortOrder, TasksSortField } from "@/shared/types/shared-types";
 import { useCallback, useMemo, useState } from "react";
 
 export const useTaskFilters = () => {
@@ -64,7 +64,7 @@ export const useTaskFilters = () => {
       priority,
       tagId,
       sort: queryParamsSort,
-      order: createdAtOrder ?? deadlineOrder,
+      order: createdAtOrder || deadlineOrder,
     }),
     [page, search, status, priority, tagId, queryParamsSort, createdAtOrder, deadlineOrder],
   );

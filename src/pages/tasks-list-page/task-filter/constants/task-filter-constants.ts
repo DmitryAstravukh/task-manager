@@ -4,7 +4,7 @@ import {
   TASK_PRIORITY_LABEL,
   TASK_STATUS_LABEL,
 } from "@/entities/task/constants/task-constants";
-import { mapRecordToSelectItems } from "@/shared/helpers/helpers";
+import { mapRecordToSelectItems } from "@/shared/helpers/shared-helpers";
 
 export const PRIORITY_ITEMS = mapRecordToSelectItems(TASK_PRIORITY_LABEL);
 

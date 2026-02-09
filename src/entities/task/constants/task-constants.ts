@@ -3,7 +3,7 @@ import type {
   TaskPriorityColor,
   TaskStatus,
 } from "@/entities/task/types/task-types.ts";
-import type { SortOrder } from "@/shared/api/types";
+import type { SortOrder } from "@/shared/types/shared-types";
 
 export const TASK_STATUS_LABEL: Record<TaskStatus, string> = {
   todo: "К выполнению",

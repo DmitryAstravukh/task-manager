@@ -4,7 +4,7 @@ import { ErrorBoundary } from "@/shared/components/error-boundary/ErrorBoundary"
 import { MUINotification } from "@/shared/components/mui-notification/MUINotification";
 import { TaskCrudPageHeader } from "@/shared/components/task-crud-page-header/TaskCrudPageHeader";
 import { TaskForm } from "@/shared/components/task-form/TaskForm";
-import type { TaskFormValues } from "@/shared/components/task-form/types/types";
+import type { TaskFormValues } from "@/shared/components/task-form/types/task-form-types";
 import { v4 as uuidv4 } from "uuid";
 
 const TaskCreatePage = () => {

@@ -3,8 +3,8 @@ import { TaskFilter } from "@/pages/tasks-list-page/task-filter/TaskFilter.tsx";
 import { TasksList } from "@/pages/tasks-list-page/tasks-list/TasksList.tsx";
 import { ErrorBoundary } from "@/shared/components/error-boundary/ErrorBoundary";
 import { Fab, Typography, Box } from "@mui/material";
-import { useTaskFilters } from "./hooks/useTaskFilter";
-import { TasksListSkeleton } from "@/shared/ui/TaskListSkeleton";
+import { useTaskFilters } from "./hooks/use-task-filter";
+import { TasksListSkeleton } from "@/shared/ui/task-list-skeleton/TaskListSkeleton";
 import { buildRoute } from "@/app/router/routes";
 import AddIcon from "@mui/icons-material/Add";
 import { Link } from "react-router-dom";
@@ -19,9 +19,11 @@ export const TasksListPage = () => {
   const isNoData =
     !isLoading && !isFetching && Array.isArray(data?.items) && data.items.length === 0;
 
+  const isSomeLoading = isLoading || isFetching;
+
   return (
     <ErrorBoundary onReset={refetch}>
-      <TaskFilter filters={filters} error={error} refetch={refetch} />
+      <TaskFilter filters={filters} error={error} refetch={refetch} isLoading={isSomeLoading} />
 
       <Box sx={{ margin: "24px 0" }}>
         {isLoading && <TasksListSkeleton />}

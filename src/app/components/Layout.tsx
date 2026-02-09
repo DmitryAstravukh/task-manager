@@ -1,23 +1,33 @@
 import { Loader } from "@/app/components/Loader.tsx";
-import { Box } from "@mui/material";
+import { NonAdaptivePlaceholder } from "@/shared/ui/NonAdaptivePlaceholder";
+import { Box, useTheme } from "@mui/material";
 import { Suspense } from "react";
 import { Outlet } from "react-router-dom";
 
 export const Layout = () => {
-  return (
-    <Box
-      sx={{
-        width: "1600px",
-        minHeight: "100dvh",
-        padding: "24px",
-        boxSizing: "border-box",
-      }}
-    >
-      <Loader />
+  const theme = useTheme();
 
-      <Suspense fallback={<Loader forcedOn />}>
-        <Outlet />
-      </Suspense>
-    </Box>
+  return (
+    <>
+      <Box sx={{ display: { xs: "block", xl: "none" } }}>
+        <NonAdaptivePlaceholder />
+      </Box>
+
+      <Box
+        sx={{
+          display: { xs: "none", xl: "block" },
+          width: `${theme.breakpoints.values.xl}px`,
+          minHeight: "100dvh",
+          padding: "24px",
+          boxSizing: "border-box",
+        }}
+      >
+        <Loader />
+
+        <Suspense fallback={<Loader forcedOn />}>
+          <Outlet />
+        </Suspense>
+      </Box>
+    </>
   );
 };

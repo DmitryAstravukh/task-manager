@@ -2,22 +2,13 @@ import { useParams } from "react-router-dom";
 
 import { useGetTagsQuery } from "@/entities/tag/api/tag-api";
 import { useGetTaskByIdQuery, useUpdateTaskMutation } from "@/entities/task/api/task-api";
-import type { Task } from "@/entities/task/types/task-types";
 import { ErrorBoundary } from "@/shared/components/error-boundary/ErrorBoundary";
 import { ErrorWithRetry } from "@/shared/components/error-with-retry/ErrorWithRetry";
 import { MUINotification } from "@/shared/components/mui-notification/MUINotification";
 import { TaskCrudPageHeader } from "@/shared/components/task-crud-page-header/TaskCrudPageHeader";
 import { TaskForm } from "@/shared/components/task-form/TaskForm";
-import type { TaskFormValues } from "@/shared/components/task-form/types/types";
-
-const mapTaskToFormValues = (task: Task): TaskFormValues => ({
-  title: task.title,
-  description: task.description ?? "",
-  status: task.status,
-  priority: task.priority,
-  deadline: task.deadline,
-  tags: task.tags,
-});
+import type { TaskFormValues } from "@/shared/components/task-form/types/task-form-types";
+import { mapTaskToFormValues } from "./helpers/task-edit-helpers";
 
 const TaskEditPage = () => {
   const { id } = useParams<{ id: string }>();

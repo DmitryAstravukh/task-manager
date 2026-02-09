@@ -3,16 +3,16 @@ import {
   TASK_PRIORITY_COLOR,
   TASK_PRIORITY_LABEL,
 } from "@/entities/task/constants/task-constants.ts";
-import { isOverdue } from "@/entities/task/helpers/is-overdue.ts";
 import type { Task, TaskStatus } from "@/entities/task/types/task-types.ts";
-import { STATUS_ITEMS } from "@/pages/tasks-list-page/task-filter/constants/constants";
-import { formatDate } from "@/shared/helpers/helpers.ts";
+import { STATUS_ITEMS } from "@/pages/tasks-list-page/task-filter/constants/task-filter-constants";
+import { formatDate } from "@/shared/helpers/shared-helpers";
 import { Flag } from "@mui/icons-material";
 import AccessTime from "@mui/icons-material/AccessTime";
 import { Box, Chip, Stack, Typography } from "@mui/material";
 import CardContent from "@mui/material/CardContent";
 import { MUINotification } from "../mui-notification/MUINotification";
 import { MUISelect } from "../mui-select/MUISelect";
+import { isOverdue } from "@/entities/task/helpers/task-helpers";
 
 type TaskDataBaseProps = {
   task: Task;
@@ -113,19 +113,30 @@ export const TaskData = (props: TaskDataProps) => {
         </Stack>
 
         <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
-          {"tagId" in props &&
-            task.tags.map((tag) => (
-              <Chip
-                key={tag}
-                label={tag}
-                size="small"
-                variant="filled"
-                color={props.tagId === tag ? "primary" : "default"}
-                onClick={handleTagClick(tag)}
-                sx={{ cursor: props.tagIsFilter ? "pointer" : undefined }}
-              />
-            ))}
+          {task.tags.map((tag) => (
+            <Chip
+              key={tag}
+              label={tag}
+              size="small"
+              variant="filled"
+              color={"tagId" in props ? (props.tagId === tag ? "primary" : "default") : "default"}
+              onClick={"tagId" in props ? handleTagClick(tag) : undefined}
+              sx={{ cursor: props.tagIsFilter ? "pointer" : undefined }}
+            />
+          ))}
         </Box>
+
+        {!("tagId" in props) && (
+          <>
+            {" "}
+            <Typography variant="body2" color={"text.secondary"} sx={{ mt: 2 }}>
+              {`Дата создания - ${formatDate(task.createdAt)}`}
+            </Typography>
+            <Typography variant="body2" color={"text.secondary"} sx={{ mt: 1 }}>
+              {`Дата редактирования - ${formatDate(task.updatedAt)}`}
+            </Typography>
+          </>
+        )}
       </CardContent>
 
       <MUINotification

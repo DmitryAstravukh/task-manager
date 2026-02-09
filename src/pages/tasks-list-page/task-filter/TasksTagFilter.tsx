@@ -4,10 +4,11 @@ import { MUISelect } from "@/shared/components/mui-select/MUISelect";
 type TaskTagFilterProps = {
   tagId: string;
   setTagId: (value: string) => void;
+  isLoading: boolean;
 };
 
-export const TaskTagFilter = ({ tagId, setTagId }: TaskTagFilterProps) => {
-  const { data: tags = [], isLoading } = useGetTagsQuery();
+export const TaskTagFilter = ({ tagId, setTagId, isLoading }: TaskTagFilterProps) => {
+  const { data: tags = [], isLoading: isTagLoading } = useGetTagsQuery();
 
   const items = tags.map(({ id, name }) => ({ id, title: name }));
 
@@ -17,7 +18,7 @@ export const TaskTagFilter = ({ tagId, setTagId }: TaskTagFilterProps) => {
       setValue={setTagId}
       items={items}
       selectProps={{ label: "Выберите тег" }}
-      formControlProps={{ disabled: isLoading }}
+      formControlProps={{ disabled: isLoading || isTagLoading }}
     />
   );
 };

@@ -3,7 +3,7 @@ import { Box } from "@mui/material";
 import Grid from "@mui/material/Grid";
 import Pagination from "@mui/material/Pagination";
 import { TaskCard } from "./task-card/TaskCard";
-import { ITEMS_PER_PAGE } from "@/shared/constants/constants";
+import { ITEMS_PER_PAGE } from "@/shared/constants/shared-constants";
 
 type TasksListProps = {
   tasks: Task[];

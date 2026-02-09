@@ -18,7 +18,23 @@ export default defineConfig({
     },
   },
   test: {
+    coverage: {
+      provider: "v8",
+      reporter: ["text", "html"],
+    },
     projects: [
+      // ─── Unit-тесты ───
+      {
+        extends: true,
+        test: {
+          name: "unit",
+          globals: true,
+          environment: "jsdom",
+          include: ["src/**/*.test.{ts,tsx}"],
+          exclude: ["src/**/*.stories.*"],
+        },
+      },
+      // ─── Storybook-тесты ───
       {
         extends: true,
         plugins: [

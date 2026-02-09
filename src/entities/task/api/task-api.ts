@@ -1,7 +1,8 @@
 import { baseApi } from "@/shared/api/baseApi.ts";
+import type { SortOrder, TasksSortField } from "@/shared/types/shared-types";
+import { taskListSchema, taskSchema } from "../schema/task-schema";
 import type { Task, TaskPriority, TaskStatus } from "../types/task-types";
-import type { SortOrder, TasksSortField } from "@/shared/api/types";
-import { ITEMS_PER_PAGE } from "@/shared/constants/constants";
+import { buildParams } from "../helpers/task-helpers";
 
 export type GetTasksArgs = {
   page: number;
@@ -24,27 +25,6 @@ export type Paginated<T> = {
   limit: number;
 };
 
-function buildParams(args: GetTasksArgs) {
-  const p = new URLSearchParams();
-
-  const page = args.page ?? 1;
-  const limit = args.limit ?? ITEMS_PER_PAGE;
-  p.set("_page", String(page));
-  p.set("_limit", String(limit));
-
-  if (args.sort) p.set("_sort", args.sort);
-  if (args.order) p.set("_order", args.order);
-
-  if (args.status) p.set("status", args.status);
-  if (args.priority) p.set("priority", args.priority);
-
-  if (args.title?.trim()) p.set("title_like", args.title.trim());
-
-  if (args.tagId) p.set("tags_like", args.tagId);
-
-  return p;
-}
-
 export const taskApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
     getTasks: build.query<Paginated<Task>, GetTasksArgs>({
@@ -52,12 +32,16 @@ export const taskApi = baseApi.injectEndpoints({
         const params = buildParams(args);
         return { url: `/tasks?${params.toString()}` };
       },
-      transformResponse: (response: Task[], meta, arg) => {
+      //предполагаем что придет Task[]
+      transformResponse: (response: unknown, meta, arg) => {
+        //проверяем входящие данные на корректность, выкинет ошибку если не верно
+        const items = taskListSchema.parse(response);
+
         const totalHeader = meta?.response?.headers.get("X-Total-Count");
-        const total = totalHeader ? Number(totalHeader) : response.length;
+        const total = totalHeader ? Number(totalHeader) : items.length;
 
         return {
-          items: response,
+          items,
           total,
           page: arg.page ?? 1,
           limit: arg.limit ?? 10,
@@ -74,6 +58,9 @@ export const taskApi = baseApi.injectEndpoints({
 
     getTaskById: build.query<Task, string>({
       query: (id) => `/tasks/${id}`,
+      transformResponse: (response: unknown) => {
+        return taskSchema.parse(response);
+      },
       providesTags: (_res, _err, id) => [{ type: "Task", id }],
     }),
 
@@ -83,6 +70,9 @@ export const taskApi = baseApi.injectEndpoints({
         method: "POST",
         body,
       }),
+      transformResponse: (response: unknown) => {
+        return taskSchema.parse(response);
+      },
       invalidatesTags: [{ type: "Task", id: "LIST" }],
     }),
 
@@ -92,6 +82,9 @@ export const taskApi = baseApi.injectEndpoints({
         method: "PATCH",
         body: patch,
       }),
+      transformResponse: (response: unknown) => {
+        return taskSchema.parse(response);
+      },
       invalidatesTags: (_res, _err, arg) => [
         { type: "Task", id: arg.id },
         { type: "Task", id: "LIST" },
@@ -107,6 +100,9 @@ export const taskApi = baseApi.injectEndpoints({
           updatedAt: new Date().toISOString(),
         },
       }),
+      transformResponse: (response: unknown) => {
+        return taskSchema.parse(response);
+      },
       invalidatesTags: (_res, _err, arg) => [
         { type: "Task", id: arg.id },
         { type: "Task", id: "LIST" },

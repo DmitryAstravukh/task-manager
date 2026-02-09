@@ -3,6 +3,7 @@ import { Card, CardContent } from "@mui/material";
 
 export const TaskCardSkeleton = () => (
   <Card
+    data-testid="task-card-skeleton"
     sx={{
       height: "100%",
       display: "flex",

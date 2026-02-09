@@ -10,10 +10,9 @@ import reactRefresh from "eslint-plugin-react-refresh";
 import prettier from "eslint-config-prettier";
 
 export default [
-  // что не линтим
   {
     ignores: ["dist/**", "node_modules/**", "coverage/**", "storybook-static/**"],
-  }, // базовые рекомендации ESLint
+  },
   js.configs.recommended, // рекомендации для TypeScript
   ...tseslint.configs.recommended, // правила для React-проекта
   {
@@ -48,30 +47,21 @@ export default [
       "react-refresh/only-export-components": ["warn", { allowConstantExport: true }],
     },
   }, // отключает правила ESLint, которые конфликтуют с Prettier
+
   prettier,
   ...storybook.configs["flat/recommended"],
+  {
+    files: ["**/*.stories.@(ts|tsx)"],
+    rules: {
+      "storybook/no-global-expect": "off",
+      "storybook/no-renderer-packages": "off",
+    },
+  },
+  {
+    files: [".storybook/**/*.{ts,tsx,js,jsx}"],
+    rules: {
+      "storybook/no-global-expect": "off",
+      "storybook/no-renderer-packages": "off",
+    },
+  },
 ];
-
-// import js from '@eslint/js'
-// import globals from 'globals'
-// import reactHooks from 'eslint-plugin-react-hooks'
-// import reactRefresh from 'eslint-plugin-react-refresh'
-// import tseslint from 'typescript-eslint'
-// import { defineConfig, globalIgnores } from 'eslint/config'
-//
-// export default defineConfig([
-//   globalIgnores(['dist']),
-//   {
-//     files: ['**/*.{ts,tsx}'],
-//     extends: [
-//       js.configs.recommended,
-//       tseslint.configs.recommended,
-//       reactHooks.configs.flat.recommended,
-//       reactRefresh.configs.vite,
-//     ],
-//     languageOptions: {
-//       ecmaVersion: 2020,
-//       globals: globals.browser,
-//     },
-//   },
-// ])

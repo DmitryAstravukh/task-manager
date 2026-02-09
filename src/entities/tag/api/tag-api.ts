@@ -14,7 +14,7 @@ export const tagApi = baseApi.injectEndpoints({
           : [{ type: "Tag" as const, id: "LIST" }],
     }),
 
-    createTag: build.mutation<Tag, Tag>({
+    createTag: build.mutation<Tag, { name: string }>({
       query: (body) => ({
         url: "/tags",
         method: "POST",
