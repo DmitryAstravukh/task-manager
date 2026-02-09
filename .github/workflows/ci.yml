@@ -1,24 +1,90 @@
+# .github/workflows/ci.yml
 name: CI
+
 on:
   push:
     branches: [dev, main]
   pull_request:
     branches: [dev, main]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
-  build:
+  lint:
+    name: Lint / Format / Typecheck
     runs-on: ubuntu-latest
     env:
       TZ: Europe/Moscow
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: "npm"
+          cache: npm
+
       - run: npm ci
       - run: npm run lint
       - run: npm run format:check
+      - run: npm run typecheck
+
+  unit:
+    name: Unit tests
+    runs-on: ubuntu-latest
+    env:
+      TZ: Europe/Moscow
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+      - run: npm run test
+
+  storybook:
+    name: Storybook tests (Vitest Browser + Playwright)
+    runs-on: ubuntu-latest
+    env:
+      TZ: Europe/Moscow
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      # Кешируем Playwright browsers для увеличения скорости CI
+      - uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright-${{ hashFiles('package-lock.json') }}
+
+      # ставим браузер перед браузерными тестами
       - run: npx playwright install --with-deps chromium
-      - run: npm run test:all
-      - run: npm run build --dry
+
+      - run: npm run test:storybook
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    needs: [lint, unit, storybook]
+    env:
+      TZ: Europe/Moscow
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
       - run: npm run build
